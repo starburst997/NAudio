@@ -30,14 +30,17 @@ namespace NAudio.Wave.Asio
         /// <returns>a list of driver names. Use this name to GetAsioDriverByName</returns>
         public static string[] GetAsioDriverNames()
         {
-            var regKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\ASIO");
+            // TODO: Was getting an error, so I just commented that part...
+            return new string[0];
+            
+            /*var regKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\ASIO");
             var names = new string[0];
             if (regKey != null)
             {
                 names = regKey.GetSubKeyNames();
                 regKey.Close();
             }
-            return names;
+            return names;*/
         }
 
         /// <summary>
@@ -47,13 +50,16 @@ namespace NAudio.Wave.Asio
         /// <returns>an AsioDriver instance</returns>
         public static AsioDriver GetAsioDriverByName(String name)
         {
-            var regKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\ASIO\\" + name);
+            // TODO: Was getting an error, so I just commented that part...
+            throw new ArgumentException($"Driver Name {name} doesn't exist");
+            
+            /*var regKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\ASIO\\" + name);
             if (regKey == null)
             {
                 throw new ArgumentException($"Driver Name {name} doesn't exist");
             }
             var guid = regKey.GetValue("CLSID").ToString();
-            return GetAsioDriverByGuid(new Guid(guid));
+            return GetAsioDriverByGuid(new Guid(guid));*/
         }
 #endif
         /// <summary>
